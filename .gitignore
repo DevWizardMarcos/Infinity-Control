@@ -1,7 +1,0 @@
-# Ignore Python cache directories
-__pycache__/
-**/__pycache__/
-.venv
-logs
-
-utils/__pycache__/
