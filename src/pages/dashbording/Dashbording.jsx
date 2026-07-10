@@ -2,13 +2,108 @@ import "../../styles/pages/dashbording.css";
 import FenixLogo from "../../assets/images/fenixLogo.png";
 import Avatar from "../../assets/images/avatar.png";
 import FenixLogoSideBar from "../../assets/images/fenixLogoSideBar.png";
+import BannerPcs from "../../assets/images/bannerPcs.png"
 const menuItems = [
   { label: "Sala 01", icon: "monitor", active: true },
-  { label: "Sala 02", icon: "monitor" },
   { label: "Estoque", icon: "box" },
   { label: "Relatórios", icon: "chart" },
   { label: "Configurações", icon: "gear" },
 ];
+
+// Dados das salas
+const salasData = [
+  {
+    titulo: "Coluna 1 ",
+    computadores: [
+      { id: "PC01", status: "online" },
+      { id: "PC02", status: "online" },
+      { id: "PC03", status: "em-uso" },
+      { id: "PC04", status: "offline" },
+    ],
+  },
+  {
+    titulo: "Coluna 2",
+    computadores: [
+      { id: "PC05", status: "online" },
+      { id: "PC06", status: "online" },
+      { id: "PC07", status: "em-uso" },
+      { id: "PC08", status: "offline" },
+    ],
+ 
+  },
+  {
+    titulo: "Coluna 3",
+    computadores: [
+      { id: "PC05", status: "online" },
+      { id: "PC06", status: "online" },
+      { id: "PC07", status: "em-uso" },
+      { id: "PC08", status: "offline" },
+    ],
+ 
+  },
+  {
+    titulo: "Coluna 4",
+    computadores: [
+      { id: "PC05", status: "online" },
+      { id: "PC06", status: "online" },
+      { id: "PC07", status: "em-uso" },
+      { id: "PC08", status: "offline" },
+    ],
+ 
+  },
+  {
+    titulo: "Coluna 5",
+    computadores: [
+      { id: "PC05", status: "online" },
+      { id: "PC06", status: "online" },
+      { id: "PC07", status: "em-uso" },
+      { id: "PC08", status: "offline" },
+    ],
+ 
+  },
+
+];
+
+// Componente Card do Computador
+function ComputadorCard({ computador }) {
+  const statusColors = {
+    online: { bg: "bg-green-500/20", border: "border-green-500/50", text: "text-green-400", label: "Online" },
+    "em-uso": { bg: "bg-yellow-500/20", border: "border-yellow-500/50", text: "text-yellow-400", label: "Em uso" },
+    offline: { bg: "bg-red-500/20", border: "border-red-500/50", text: "text-red-400", label: "Offline" },
+  };
+
+  const statusStyle = statusColors[computador.status];
+
+  return (
+    <div className={`border ${statusStyle.border} rounded-lg p-4 ${statusStyle.bg} backdrop-blur-sm hover:bg-opacity-30 transition-all`}>
+      <div className="flex flex-col items-center gap-3">
+        <span className="text-lg font-bold text-white">{computador.id}</span>
+        <div className="w-20 h-20 border border-red-500/40 rounded flex items-center justify-center">
+          <img src={BannerPcs} alt="" srcset=""   className="w-full h-full object-cover object-center"
+ />
+          {/* <span className="text-3xl">🔥</span> */}
+        </div>
+        <span className={`text-sm font-medium ${statusStyle.text}`}>
+          {statusStyle.label}
+        </span>
+      </div>
+    </div>
+  );
+}
+
+// Componente Sala
+function Sala({ titulo, computadores }) {
+  return (
+    <div className="space-y-3 border border-red-500/40 rounded-lg p-6 bg-black/20">
+      <h2 className="text-xl font-bold text-red-500 uppercase tracking-wide">{titulo}</h2>
+      <div className="grid grid-cols-4 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        {computadores.map((pc) => (
+          <ComputadorCard key={pc.id} computador={pc} />
+        ))}
+      </div>
+    </div>
+  );
+}
 
 function Dashbording() {
   return (
@@ -104,7 +199,39 @@ function Dashbording() {
           </div>
         </aside>
 
-        <section className="dashboard-content">Conteudo aqui</section>
+        <section className="dashboard-content">
+          <div className="h-full overflow-y-auto px-6 py-8 space-y-6">
+            {/* Salas */}
+            {salasData.map((sala) => (
+              <Sala key={sala.titulo} titulo={sala.titulo} computadores={sala.computadores} />
+            ))}
+
+            {/* Mesa do Professor */}
+            <div className="space-y-3 border border-red-500/40 rounded-lg p-6 bg-black/20">
+              <h2 className="text-xl font-bold text-red-500 uppercase tracking-wide">MESA DO PROFESSOR</h2>
+              <div className="flex items-center justify-center gap-8 py-12">
+                <div className="flex flex-col items-center gap-2">
+                  <div className="w-16 h-16 border border-red-500/40 rounded flex items-center justify-center">
+                    <span className="text-2xl">💻</span>
+                  </div>
+                  <span className="text-sm text-gray-400">Laptop</span>
+                </div>
+                <div className="flex flex-col items-center gap-2">
+                  <div className="w-16 h-16 border border-red-500/40 rounded flex items-center justify-center">
+                    <span className="text-2xl">📱</span>
+                  </div>
+                  <span className="text-sm text-gray-400">Smartphone</span>
+                </div>
+                <div className="flex flex-col items-center gap-2">
+                  <div className="w-16 h-16 border border-red-500/40 rounded flex items-center justify-center">
+                    <span className="text-2xl">☕</span>
+                  </div>
+                  <span className="text-sm text-gray-400">Café</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
       </div>
     </main>
   );
