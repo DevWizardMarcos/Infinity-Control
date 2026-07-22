@@ -1,4 +1,10 @@
-# Sistema de Controle de Computadores por Salas
+<hr>
+
+<div align="center">
+
+<img src="BannerGit_infinityControl/BannerInfinityStock.PNG" width="100%" />
+
+<hr>
 
 Sistema para gerenciamento remoto de computadores organizados por salas/laboratórios,
 com suporte a diferentes sistemas operacionais. Funciona para **qualquer escola**:
