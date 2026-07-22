@@ -6,7 +6,6 @@
   width="100%"
 />
 
-# Infinity Control
 
 ### Gerenciamento remoto de computadores para escolas e laboratórios
 
