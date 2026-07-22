@@ -6,11 +6,9 @@
   width="100%"
 />
 
-# Infinity Control
-
 ### Gerenciamento remoto de computadores para escolas e laboratórios
 
-Sistema full-stack desenvolvido para gerenciar computadores organizados por salas ou laboratórios, oferecendo suporte para ambientes Linux e Windows.
+Sistema full-stack desenvolvido para gerenciar computadores organizados por salas ou laboratórios, com suporte para ambientes Linux e Windows.
 
 </div>
 
@@ -58,6 +56,14 @@ A API FastAPI é consumida pelo frontend, mas o sistema também pode ser utiliza
 
 ## 🛠️ Tecnologias utilizadas
 
+### Frontend
+
+- React;
+- JavaScript;
+- Vite;
+- HTML;
+- CSS.
+
 ### Backend
 
 - Python;
@@ -69,14 +75,6 @@ A API FastAPI é consumida pelo frontend, mas o sistema também pode ser utiliza
 - Bcrypt;
 - Paramiko;
 - Wake-on-LAN.
-
-### Frontend
-
-- React;
-- JavaScript;
-- Vite;
-- HTML;
-- CSS.
 
 ### Infraestrutura e comunicação
 
@@ -138,8 +136,7 @@ CCI/
     ├── index.html
     ├── vite.config.js
     ├── package.json
-    └── src/
-        └── # Aplicação React: login, dashboard, componentes e estilos
+    └── src/                     # Login, dashboard, componentes e estilos
 ```
 
 ---
@@ -194,7 +191,7 @@ SALA_LABORATORIO_01_PASSWORD=senha_segura
 SALA_LABORATORIO_01_SSH_PORT=22
 ```
 
-Os valores aceitos em `OS` são:
+Os sistemas operacionais aceitos são:
 
 - `linux`;
 - `windows`.
@@ -253,15 +250,16 @@ git clone URL_DO_REPOSITORIO
 cd CCI
 ```
 
+> Substitua `URL_DO_REPOSITORIO` pelo endereço do projeto no GitHub.
+
 ### 2. Configure o backend
 
 ```bash
 cd backend
-
 python -m venv .venv
 ```
 
-Ative o ambiente virtual.
+Ative o ambiente virtual de acordo com seu sistema operacional.
 
 #### Linux ou macOS
 
@@ -281,10 +279,15 @@ source .venv/bin/activate
 .venv\Scripts\activate
 ```
 
-Instale as dependências e configure o ambiente:
+Instale as dependências:
 
 ```bash
 pip install -r requirements.txt
+```
+
+Copie o arquivo de configuração:
+
+```bash
 cp .env.example .env
 ```
 
@@ -310,7 +313,7 @@ Os usuários são armazenados em um banco SQLite e possuem:
 - Senha;
 - Cargo.
 
-As senhas são armazenadas utilizando hash seguro e não ficam salvas em texto puro.
+As senhas são protegidas utilizando hash seguro e não ficam armazenadas em texto puro.
 
 Somente usuários cujo cargo corresponda ao valor de `ALLOWED_CARGO` podem utilizar as funcionalidades protegidas da API.
 
@@ -333,7 +336,7 @@ python scripts/create_user.py \
   --cargo TI
 ```
 
-A senha será solicitada de forma interativa.
+A senha será solicitada de forma interativa e não será exibida no terminal.
 
 ---
 
@@ -454,16 +457,16 @@ http://localhost:5173
 
 ## 🔧 Sistemas operacionais suportados
 
-Cada sala pode ser configurada com:
+Cada sala pode ser configurada para utilizar Linux ou Windows:
 
 ```env
-OS=linux
+SALA_LABORATORIO_01_OS=linux
 ```
 
 ou:
 
 ```env
-OS=windows
+SALA_LABORATORIO_01_OS=windows
 ```
 
 A aplicação seleciona automaticamente os comandos adequados para:
@@ -499,7 +502,7 @@ Para utilizar o sistema com segurança:
 - Não compartilhe credenciais SSH;
 - Restrinja as origens configuradas em `CORS_ORIGINS`;
 - Utilize senhas diferentes em ambientes de desenvolvimento e produção;
-- Evite utilizar credenciais administrativas quando não for necessário;
+- Evite credenciais administrativas quando não forem necessárias;
 - Mantenha o sistema disponível apenas em redes autorizadas.
 
 ---
@@ -510,7 +513,7 @@ Para utilizar o sistema com segurança:
 - Teste a conectividade antes de executar comandos em massa;
 - Verifique se os endereços IP e MAC estão corretos;
 - Valide se a sala utiliza Linux ou Windows;
-- Faça testes em poucos computadores antes de utilizar ações em toda a sala;
+- Faça testes em poucos computadores antes de executar ações em toda a sala;
 - Não execute comandos personalizados sem verificar seu impacto.
 
 Antes de realizar operações em massa, utilize:
@@ -525,52 +528,124 @@ GET /salas/{sala}/connectivity
 
 - [ ] Finalizar o dashboard web;
 - [ ] Exibir o status individual dos computadores;
-- [ ] Adicionar confirmação visual para ações críticas;
+- [ ] Adicionar confirmações visuais para ações críticas;
 - [ ] Criar histórico de comandos executados;
 - [ ] Implementar logs de auditoria;
 - [ ] Adicionar filtros e pesquisa por computador;
 - [ ] Melhorar o gerenciamento de usuários;
 - [ ] Criar testes automatizados;
-- [ ] Preparar implantação em produção.
+- [ ] Preparar a implantação em produção.
 
 ---
 
-## 🤝 Contribuição
+## 👥 Contribuidores
+
+O **Infinity Control** foi desenvolvido de forma colaborativa, com responsabilidades divididas entre frontend e backend.
+
+<table>
+  <tr>
+    <td align="center" width="50%">
+      <a href="https://github.com/DevWizardMarcos">
+        <img
+          src="https://github.com/DevWizardMarcos.png"
+          width="120px"
+          alt="Foto de Marcos Simões"
+        />
+        <br />
+        <strong>Marcos Simões</strong>
+      </a>
+      <br />
+      <sub>Desenvolvedor Front-End</sub>
+    </td>
+    <td align="center" width="50%">
+      <a href="https://github.com/Walter-Alves-602">
+        <img
+          src="https://github.com/Walter-Alves-602.png"
+          width="120px"
+          alt="Foto de Walter Alves"
+        />
+        <br />
+        <strong>Walter Alves</strong>
+      </a>
+      <br />
+      <sub>Desenvolvedor Back-End</sub>
+    </td>
+  </tr>
+</table>
+
+### Responsabilidades
+
+| Contribuidor | Área | Principais responsabilidades |
+|---|---|---|
+| **Marcos Simões** | Front-End | Interface em React, componentes, estilização, responsividade, experiência do usuário e integração com a API |
+| **Walter Alves** | Back-End | API FastAPI, arquitetura hexagonal, autenticação JWT, banco de dados, SSH, Wake-on-LAN e regras de negócio |
+
+### Marcos Simões — Front-End
+
+- Desenvolvimento da interface com React e Vite;
+- Criação de componentes reutilizáveis;
+- Desenvolvimento das telas de login e dashboard;
+- Estilização e responsividade;
+- Organização da experiência do usuário;
+- Integração do frontend com a API;
+- Tratamento visual de respostas e erros;
+- Documentação visual do projeto.
+
+### Walter Alves — Back-End
+
+- Desenvolvimento da API com FastAPI;
+- Organização da arquitetura hexagonal;
+- Implementação da autenticação JWT;
+- Gerenciamento de usuários e permissões;
+- Integração com SQLite e SQLAlchemy;
+- Execução de comandos remotos por SSH;
+- Implementação do Wake-on-LAN;
+- Criação das regras de negócio;
+- Configuração e gerenciamento das salas.
+
+---
+
+## 🤝 Como contribuir
 
 Contribuições são bem-vindas.
 
 1. Faça um fork do projeto;
-2. Crie uma branch:
+2. Crie uma nova branch:
 
 ```bash
 git switch -c feature/nome-da-funcionalidade
 ```
 
-3. Faça suas alterações;
-4. Crie um commit:
+3. Faça as alterações necessárias;
+4. Adicione os arquivos:
+
+```bash
+git add .
+```
+
+5. Crie um commit:
 
 ```bash
 git commit -m "feat: adiciona nova funcionalidade"
 ```
 
-5. Envie a branch:
+6. Envie a branch:
 
 ```bash
 git push origin feature/nome-da-funcionalidade
 ```
 
-6. Abra um Pull Request.
-
----
-
-## 👨‍💻 Autores
-
-Projeto desenvolvido para facilitar o gerenciamento de computadores em escolas e laboratórios de informática.
+7. Abra um Pull Request.
 
 ---
 
 <div align="center">
 
-Desenvolvido com dedicação para tornar a gestão de laboratórios mais segura e eficiente.
+### Infinity Control
+
+Gerenciamento inteligente, seguro e eficiente para laboratórios de informática.
+
+Desenvolvido por  
+[Marcos Simões](https://github.com/DevWizardMarcos) e [Walter Alves](https://github.com/Walter-Alves-602)
 
 </div>
